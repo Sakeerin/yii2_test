@@ -37,6 +37,13 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'view' => [
+           'theme' => [
+             'pathMap' => [
+                '@app/views' => '@backend/themes/kongoon/views'
+              ],
+           ],
+         ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
