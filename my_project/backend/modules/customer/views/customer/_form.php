@@ -11,6 +11,8 @@ use dosamigos\datetimepicker\DateTimePicker;
 use dosamigos\editable\Editable;
 use pendalf89\filemanager\widgets\TinyMCE;
 use dosamigos\fileupload\FileUploadUI;
+use dosamigos\disqus\Comments;
+use dosamigos\disqus\CommentsCount;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\customer\models\Customer */
@@ -42,6 +44,13 @@ use dosamigos\fileupload\FileUploadUI;
         'clientOptions' => [ 'autoclose' => true, 'format' => 'dd MM yyyy - HH:ii P',
         'todayBtn' => true ] ]);?>
 
+        <?= Comments::widget([
+            'shortname' => '{yourforumshortname}',
+            'identifier' => 'article_identifier' ]); ?>
+
+        <?= CommentsCount::widget([
+            'shortname' => '{yourforumshortname}',
+            'identifier' => 'article_identifier' ]); ?>
 
         <!-- Editable::widget( [
         'model' => $model,
@@ -103,6 +112,21 @@ use dosamigos\fileupload\FileUploadUI;
         'clientEvents' => [ 'fileuploaddone' => 'function(e, data) { console.log(e); console.log(data); }',
         'fileuploadfail' => 'function(e, data) { console.log(e); console.log(data); }', ],
     ]); ?>
+
+    <!--  $form->field($model, 'tagNames')->widget(SelectizeTextInput::className(), [
+          // calls an action that returns a JSON object with matched
+          // tags
+          'loadUrl' => ['tag/list'],
+          'options' => ['class' => 'form-control'],
+          'clientOptions' => [ 'plugins' => ['remove_button'],
+          'valueField' => 'name',
+          'labelField' => 'name',
+          'searchField' => ['name'],
+          'create' => true,
+        ],
+        ])->hint('Use commas to separate tags') ?> -->
+
+
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 

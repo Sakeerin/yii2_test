@@ -3,7 +3,7 @@
 namespace backend\modules\customer\models;
 
 use Yii;
-
+use dosamigos\taggable\Taggable;
 /**
  * This is the model class for table "customer".
  *
@@ -21,6 +21,14 @@ use Yii;
  */
 class Customer extends \yii\db\ActiveRecord
 {
+
+    public function behaviors() {
+      return [
+        [
+          'class' => Taggable::className(),
+        ],
+     ];
+   }
     /**
      * @inheritdoc
      */
@@ -39,6 +47,7 @@ class Customer extends \yii\db\ActiveRecord
             [['tax'], 'string'],
             [['name', 'phone_number', 'email', 'website', 'bank_info'], 'string', 'max' => 100],
             [['address'], 'string', 'max' => 500],
+            [['tagNames'], 'safe'],
         ];
     }
 
