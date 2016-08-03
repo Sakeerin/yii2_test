@@ -47,7 +47,7 @@ use dosamigos\disqus\CommentsCount;
         <?= Comments::widget([
             'shortname' => '{yourforumshortname}',
             'identifier' => 'article_identifier' ]); ?>
-      
+
         <?= CommentsCount::widget([
             'shortname' => '{yourforumshortname}',
             'identifier' => 'article_identifier' ]); ?>

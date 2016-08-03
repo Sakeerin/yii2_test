@@ -121,4 +121,16 @@ class CustomerController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    // public function actionList($query)
+    // {
+    //     $models = Customer::findAllByName($query);
+    //     $items = [];
+    //     foreach ($models as $model) {
+    //       $items[] = ['name' => $model->name];
+    //     }
+    //     // We know we can use ContentNegotiator filter
+    //     // this way is easier to show you here :)
+    //     Yii::$app->response->format = Response::FORMAT_JSON; return $items;
+    // }
 }

@@ -65,6 +65,7 @@ class Customer extends \yii\db\ActiveRecord
             'website' => 'เว็บไซต์',
             'bank_info' => 'บัญชีธนาคาร',
             'tax' => 'หมายเลขประจำตัวผู้เสียภาษี',
+            'taggable' => 'taggable',
         ];
     }
 
@@ -83,4 +84,12 @@ class Customer extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Receipt::className(), ['id_customer' => 'id']);
     }
+
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    // public function getTags()
+    // {
+    //     return $this->hasMany(Quotation::className(), ['id' => 'id_customer'])->viaTable('tour_tag_assn', ['tour_id' => 'id']);
+    // } 
 }
