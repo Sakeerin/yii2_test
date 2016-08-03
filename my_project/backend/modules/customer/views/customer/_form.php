@@ -13,14 +13,25 @@ use pendalf89\filemanager\widgets\TinyMCE;
 use dosamigos\fileupload\FileUploadUI;
 use dosamigos\disqus\Comments;
 use dosamigos\disqus\CommentsCount;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\customer\models\Customer */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<?php
+
+$this->registerJs(
+ '$("document").ready(function(){
+      $("#new_country").on("pjax:end", function() {
+          $.pjax.reload({container:"#countries"});  //Reload GridView
+      });
+  });'
+);
+?>
 
 <div class="customer-form">
-
+  <?php yii\widgets\Pjax::begin(['id' => 'new_country']) ?>
     <?php $form = ActiveForm::begin(); ?>
     <?
     // Initialize plugin
@@ -131,5 +142,5 @@ use dosamigos\disqus\CommentsCount;
     </div>
 
     <?php ActiveForm::end(); ?>
-
+    <?php yii\widgets\Pjax::end() ?>
 </div>

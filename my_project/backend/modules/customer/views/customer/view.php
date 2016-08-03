@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\customer\models\Customer */
@@ -13,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="customer-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <?php Pjax::begin(); ?>
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -24,7 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
+    <?php Pjax::end(); ?>
 
+    <?php Pjax::begin(); ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -38,5 +41,5 @@ $this->params['breadcrumbs'][] = $this->title;
             'tax:ntext',
         ],
     ]) ?>
-
+    <?php Pjax::end(); ?>
 </div>
