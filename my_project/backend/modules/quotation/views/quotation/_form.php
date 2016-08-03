@@ -19,6 +19,7 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 
+
 /* @var $this yii\web\View */
 /* @var $model backend\modules\quotation\models\Quotation */
 /* @var $form yii\widgets\ActiveForm */
@@ -55,8 +56,10 @@ use yii\widgets\Pjax;
     <?php $form = ActiveForm::begin(['options' => ['data-pjax' => true ]]); ?>
     <?= $form->field($model, 'id_doc_qu')->textInput(['readonly' => true, 'value' => 'PNS-Qu-'.$q]) ?>
 
-    <?= Html::activeDropDownList($model, 'id_company',
-        ArrayHelper::map(Company::find()->all(), 'id', 'name')) ?>
+
+        <!-- Html::activeDropDownList($model, 'id_company',
+        ArrayHelper::map(Company::find()->all(), 'id', 'name'))
+        ?> -->
 
     <?= Html::activeDropDownList($model, 'id_customer',
         ArrayHelper::map(Customer::find()->all(), 'id', 'name')) ?>

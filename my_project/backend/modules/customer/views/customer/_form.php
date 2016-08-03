@@ -143,4 +143,11 @@ $this->registerJs(
 
     <?php ActiveForm::end(); ?>
     <?php yii\widgets\Pjax::end() ?>
+    <?php Pjax::begin(); ?>
+      <?= Html::beginForm(['site/form-submission'], 'post', ['data-pjax' => '', 'class' => 'form-inline']); ?>
+      <?= Html::input('text', 'string', Yii::$app->request->post('string'), ['class' => 'form-control']) ?>
+      <?= Html::submitButton('Получить хеш', ['class' => 'btn btn-lg btn-primary', 'name' => 'hash-button']) ?>
+      <?= Html::endForm() ?>
+
+    <?php Pjax::end(); ?>
 </div>

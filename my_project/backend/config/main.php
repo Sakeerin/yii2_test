@@ -17,7 +17,16 @@ return [
        ],
        'quotation' => [
              'class' => 'backend\modules\quotation\Module',
+       ],
+       'receipt' => [
+             'class' => 'backend\modules\receipt\Module',
          ],
+       'detail' => [
+             'class' => 'backend\modules\detail\Module',
+         ],
+         'company' => [
+             'class' => 'backend\modules\company\Module',
+         ]
     ],
     'components' => [
         'request' => [

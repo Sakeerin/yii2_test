@@ -1,16 +1,16 @@
 <?php
 
-namespace backend\modules\quotation\models;
+namespace backend\modules\detail\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\quotation\models\Quotation;
+use backend\modules\detail\models\Detail;
 
 /**
- * QuotationSearch represents the model behind the search form about `backend\modules\quotation\models\Quotation`.
+ * DetailSearch represents the model behind the search form about `backend\modules\detail\models\Detail`.
  */
-class QuotationSearch extends Quotation
+class DetailSearch extends Detail
 {
     /**
      * @inheritdoc
@@ -18,8 +18,9 @@ class QuotationSearch extends Quotation
     public function rules()
     {
         return [
-            [['id', 'id_company', 'id_customer'], 'integer'],
-            [['id_doc_qu', 'date', 'dev_time', 'payment', 'guaruantee'], 'safe'],
+            [['id', 'id_quotation', 'id_receipt'], 'integer'],
+            [['product_description', 'quantity'], 'safe'],
+            [['unit_price'], 'number'],
         ];
     }
 
@@ -41,15 +42,12 @@ class QuotationSearch extends Quotation
      */
     public function search($params)
     {
-        $query = Quotation::find();
+        $query = Detail::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'pageSize' => 3,
-            ],
         ]);
 
         $this->load($params);
@@ -63,15 +61,13 @@ class QuotationSearch extends Quotation
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'id_company' => $this->id_company,
-            'id_customer' => $this->id_customer,
+            'id_quotation' => $this->id_quotation,
+            'id_receipt' => $this->id_receipt,
+            'unit_price' => $this->unit_price,
         ]);
 
-        $query->andFilterWhere(['like', 'id_doc_qu', $this->id_doc_qu])
-            ->andFilterWhere(['like', 'date', $this->date])
-            ->andFilterWhere(['like', 'dev_time', $this->dev_time])
-            ->andFilterWhere(['like', 'payment', $this->payment])
-            ->andFilterWhere(['like', 'guaruantee', $this->guaruantee]);
+        $query->andFilterWhere(['like', 'product_description', $this->product_description])
+            ->andFilterWhere(['like', 'quantity', $this->quantity]);
 
         return $dataProvider;
     }

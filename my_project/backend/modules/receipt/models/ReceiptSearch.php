@@ -1,16 +1,16 @@
 <?php
 
-namespace backend\modules\quotation\models;
+namespace backend\modules\receipt\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\quotation\models\Quotation;
+use backend\modules\receipt\models\Receipt;
 
 /**
- * QuotationSearch represents the model behind the search form about `backend\modules\quotation\models\Quotation`.
+ * ReceiptSearch represents the model behind the search form about `backend\modules\receipt\models\Receipt`.
  */
-class QuotationSearch extends Quotation
+class ReceiptSearch extends Receipt
 {
     /**
      * @inheritdoc
@@ -19,7 +19,7 @@ class QuotationSearch extends Quotation
     {
         return [
             [['id', 'id_company', 'id_customer'], 'integer'],
-            [['id_doc_qu', 'date', 'dev_time', 'payment', 'guaruantee'], 'safe'],
+            [['id_doc_re', 'date'], 'safe'],
         ];
     }
 
@@ -41,15 +41,12 @@ class QuotationSearch extends Quotation
      */
     public function search($params)
     {
-        $query = Quotation::find();
+        $query = Receipt::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'pageSize' => 3,
-            ],
         ]);
 
         $this->load($params);
@@ -67,11 +64,8 @@ class QuotationSearch extends Quotation
             'id_customer' => $this->id_customer,
         ]);
 
-        $query->andFilterWhere(['like', 'id_doc_qu', $this->id_doc_qu])
-            ->andFilterWhere(['like', 'date', $this->date])
-            ->andFilterWhere(['like', 'dev_time', $this->dev_time])
-            ->andFilterWhere(['like', 'payment', $this->payment])
-            ->andFilterWhere(['like', 'guaruantee', $this->guaruantee]);
+        $query->andFilterWhere(['like', 'id_doc_re', $this->id_doc_re])
+            ->andFilterWhere(['like', 'date', $this->date]);
 
         return $dataProvider;
     }
