@@ -15,6 +15,9 @@ return [
       'customer' => [
             'class' => 'backend\modules\customer\Module',
        ],
+       'quotation' => [
+             'class' => 'backend\modules\quotation\Module',
+         ],
     ],
     'components' => [
         'request' => [
