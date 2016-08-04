@@ -5,10 +5,12 @@ namespace backend\modules\detail\controllers;
 use Yii;
 use backend\modules\detail\models\Detail;
 use backend\modules\detail\models\DetailSearch;
+use backend\modules\quotation\models\Quotation;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\widgets\Pjax;
+use yii\helpers\Url;
 
 
 /**
@@ -53,10 +55,10 @@ class DetailController extends Controller
      * @param integer $id_receipt
      * @return mixed
      */
-    public function actionView($id, $id_quotation, $id_receipt)
+    public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id, $id_quotation, $id_receipt),
+            'model' => $this->findModel($id),
         ]);
     }
 
@@ -68,12 +70,14 @@ class DetailController extends Controller
     public function actionCreate()
     {
         $model = new Detail();
+        //$q = Quotation::find('id')->orderBy(['id' => 'SORT_DESC'])->where('id' => $model->id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id, 'id_quotation' => $model->id_quotation, 'id_receipt' => $model->id_receipt]);
+            return $this->redirect(['/quotation/quotation/view', 'id' => $model->id, 'id_quotation' => $model->id_quotation, 'id_receipt' => $model->id_receipt]);
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,
+                //'q' => $q,
             ]);
         }
     }
@@ -123,9 +127,9 @@ class DetailController extends Controller
      * @return Detail the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id, $id_quotation, $id_receipt)
+    protected function findModel($id)
     {
-        if (($model = Detail::findOne(['id' => $id, 'id_quotation' => $id_quotation, 'id_receipt' => $id_receipt])) !== null) {
+        if (($model = Detail::findOne(['id' => $id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

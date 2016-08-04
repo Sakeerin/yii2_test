@@ -5,6 +5,8 @@ use yii\widgets\DetailView;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
 use yii\widgets\ActiveForm;
+use yii\widgets\Pjax;
+//use kartik\detail\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\quotation\models\Quotation */
@@ -27,97 +29,43 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
-    <div class="body">
-
-      <body>
-        <div class="wrapper">
-          <!-- Main content -->
-          <section class="invoice">
-            <!-- title row -->
-           <div class="header">
-             <div class="row-xs-6">
-               <div class="col-xs-12">
-                 <h2 class="page-header " align='center'>
-                   <i class="" ></i><b>Phoenix</b>soft
-                 </h2>
-               </div>
-               <!-- /.col -->
-             </div>
-           </div>
-
-            <!-- info row -->
-            <div class="content">
-              <div class="row">
-                <div class="col-xs-12" >
-                  <h4 align="left">รหัสเอกสารใบเสนอราคา : <?php echo $model->id_doc_qu;  ?></h4>
-                  <?php foreach ($user as $key): ?>
-                    <h4 align="left">ชื่อลูกค้า : <?php echo $key['name'];  ?></h4>
-                  <?php endforeach; ?>
-
-                  <h4 align="left">วันที่ออกใบเนอสินค้า : <?php echo $model->date ?></h4>
-                  <h4 align="left">ระยะเวลาการทำงานทั้งหมด : <?php echo $model->dev_time ?></h4>
-                  <h4 align="left">การรับประกันสินค้า : <?php echo $model->guaruantee ?></h4>
-                  <h4 align="left">การจ่ายเงิน : <?php echo $model->payment ?></h4>
-
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-              <!-- Table row -->
-              <h3 align="center">รายละเอียด</h3>
-              <div class="row">
-                <div class="col-xs-12 table-responsive">
-                  <table class="table table-striped">
-                    <thead>
-                    <tr>
-                      <th>No.</th>
-                      <th>Product Description</th>
-                      <th>Quantity</th>
-                      <th>Unit price</th>
-                      <!--<th>Subtotal</th>-->
-                    </tr>
-                    </thead>
-                    <?php $i = 1; ?>
-                    <tbody>
-                      <?php  foreach($detail as $row):?>
-                    <tr>
-
-                      <td align='center'><?php echo $i; ?></td>
-                      <td><?php echo $row['product_description']; ?></td>
-                      <td align='center'><?php echo $row['quantity']; ?></td>
-                      <td align='center'><?php echo $row['unit_price']; ?></td>
-
-                    </tr>
-                    <?php $i++; ?>
-                    <?php endforeach;?>
-
-                    </tbody>
-
-                  </table>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-
-
-              <!-- /.row -->
-
-            </div>
-
-
-          </section>
-          <!-- /.content -->
-        </div>
-        <!-- ./wrapper -->
-
-      </body>
-
-
-    </div>
+    <?php Pjax::begin(); ?>
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            //'id',
+            'id_doc_qu',
+            //'id_company',
+            //'id_customer',
+            'date',
+            'dev_time',
+            'payment',
+            'guaruantee',
+            //'product_description',
+            //'quantity',
+            //'unit_price',
+        ],
+    ]) ?>
+  <?php
+//    DetailView::widget([
+//    'detail'=>$detail,
+//    'condensed'=>true,
+//    'hover'=>true,
+//    //'mode'=>DetailView::MODE_VIEW,
+//    'attributes'=>[
+//       'columns' =>
+//       [
+//          'attribute'=>'product_description',
+//       ],
+//       [
+//          'attribute'=>'quantity',
+//       ],
+//    ]
+// ]);	 ?>
+    <?php Pjax::end(); ?>
     <br/>
      <!-- Html::button('ExportPDF',['value'=>Url::to('index.php?r=detail/detail/create'),'class'=> 'btn btn-success','id'=> 'modalButton'])  ?> -->
-     <?= Html::a('ExportPDF', ['_preview', 'id' => $model->id, 'id_company' => $model->id_company, 'id_customer' => $model->id_customer], ['class' => 'btn btn-success']) ?>
+      <!-- Html::a('ExportPDF', ['_preview', 'id' => $model->id, 'id_company' => $model->id_company, 'id_customer' => $model->id_customer], ['class' => 'btn btn-success']) ?> -->
      <P>
       <?= Html::button('เพิ่มรายละเอียด',['value'=>Url::to('index.php?r=detail/detail/create'),'class'=> 'btn btn-success','id'=> 'modalButton'])  ?>
     </P>

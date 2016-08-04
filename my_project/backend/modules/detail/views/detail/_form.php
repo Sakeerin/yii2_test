@@ -21,7 +21,6 @@ use yii\widgets\Pjax;
     <?php Pjax::begin(['id' => 'countries']) ?>
     <?php $form = ActiveForm::begin(); ?>
 
-
     <p>
       รหัสใบเสนอราคา : <?= Html::activeDropDownList($model, 'id_quotation',
         ArrayHelper::map(Quotation::find()->all(), 'id','id')) ?>
@@ -41,9 +40,9 @@ use yii\widgets\Pjax;
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
-    <P>
-     <?= Html::button('บันทึก',['value'=>Url::to('index.php?r=quotation/quotation/create'),'class'=> 'btn btn-success' ])  ?>
-   </P>
+    <!-- <P>
+      Html::button('บันทึก',['value'=>Url::to('index.php?r=quotation/quotation/create'),'class'=> 'btn btn-success' ])  ?>
+   </P> -->
 
 
     <?php ActiveForm::end(); ?>

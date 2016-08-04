@@ -18,10 +18,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Quotation', ['create'], ['class' => 'btn btn-success']) ?>
 
-
+  <?php Pjax::begin() ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        //'responsive' => true,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -37,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+<?php Pjax::end() ?>
 
 
 

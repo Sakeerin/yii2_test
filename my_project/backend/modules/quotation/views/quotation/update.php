@@ -17,7 +17,7 @@ $q = $model->id;
 
     <?= $this->render('_form', [
         'model' => $model,
-        'q' => $q,
+        //'q' => $q,
     ]) ?>
 
 </div>

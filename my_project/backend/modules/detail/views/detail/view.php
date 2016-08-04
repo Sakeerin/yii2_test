@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\detail\models\Detail */
@@ -24,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+    <?php Pjax::begin(); ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -36,5 +37,5 @@ $this->params['breadcrumbs'][] = $this->title;
             'unit_price',
         ],
     ]) ?>
-
+      <?php Pjax::end(); ?>
 </div>

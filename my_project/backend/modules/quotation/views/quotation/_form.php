@@ -57,9 +57,8 @@ use yii\widgets\Pjax;
     <?= $form->field($model, 'id_doc_qu')->textInput(['readonly' => true, 'value' => 'PNS-Qu-'.$q]) ?>
 
 
-        <!-- Html::activeDropDownList($model, 'id_company',
-        ArrayHelper::map(Company::find()->all(), 'id', 'name'))
-        ?> -->
+    <?= Html::activeDropDownList($model, 'id_company',
+        ArrayHelper::map(Company::find()->all(), 'id', 'name')) ?>
 
     <?= Html::activeDropDownList($model, 'id_customer',
         ArrayHelper::map(Customer::find()->all(), 'id', 'name')) ?>
@@ -93,17 +92,17 @@ use yii\widgets\Pjax;
     </div>
     <div>
       <P>
-       <?= Html::button('เพิ่มรายละเอียด',['value'=>Url::to('index.php?r=detail/detail/create'),'class'=> 'btn btn-success','id'=> 'modalButton'])  ?>
+       <!-- Html::button('เพิ่มรายละเอียด',['value'=>Url::to('index.php?r=detail/detail/create'),'class'=> 'btn btn-success','id'=> 'modalButton'])  ?>  -->
      </P>
 
 <?php
-       Modal::begin([
-           'header' => '<h4> Detail </h4>',
-           'id' => 'modal',
-           'size' => 'modal-lg',
-       ]);
-       echo "<div id='modalContent'></div>";
-       Modal::end();
+      //  Modal::begin([
+      //      'header' => '<h4> Detail </h4>',
+      //      'id' => 'modal',
+      //      'size' => 'modal-lg',
+      //  ]);
+      //  echo "<div id='modalContent'></div>";
+      //  Modal::end();
       ?>
 
     </div>

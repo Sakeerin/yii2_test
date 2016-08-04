@@ -68,18 +68,19 @@ class QuotationController extends Controller
     public function actionView($id, $id_company, $id_customer)
     {
         $model = new Quotation();
-
+        //$query = Detail::find()->where(['not',['id_quotation' => null]])->andWhere(['id_receipt' => null])->andWhere(['id_quotation' => $model->id])->all();
         $model = $this->findModel($id, $id_company, $id_customer);
         $detail = Detail::find()->where(['not',['id_quotation' => null]])->andWhere(['id_receipt' => null])->andWhere(['id_quotation' => $model->id])->all();
-        $user = Customer::find('name','address')->where(['id' => $model->id])->all();
-        $company = Company::find()->all();
-        $quo = Quotation::find()->where(['id' => $model->id])->all();
+        //$detail => 'product_description';
+        // $user = Customer::find('name','address')->where(['id' => $model->id])->all();
+        // $company = Company::find()->all();
+        // $quo = Quotation::find()->where(['id' => $model->id])->all();
         return $this->render('view', [
             'model' => $this->findModel($id, $id_company, $id_customer),
             'detail' => $detail,
-            'user' => $user,
-            'company' => $company,
-            'quo' => $quo,
+            // 'user' => $user,
+            // 'company' => $company,
+            // 'quo' => $quo,
         ]);
     }
 

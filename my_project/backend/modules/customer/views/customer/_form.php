@@ -46,6 +46,7 @@ $this->registerJs(
     //     'icon' => $leafLet->plugins->makimarker->make("rocket",['color' => "#b0b", 'size' => "m"]),
     //     'popupContent' => 'Hey! I am a marker' ]);
     ?>
+
         <p><b>วันที่ </b> </p>
         <?= DateTimePicker::widget([
         'model' => $model,
@@ -62,6 +63,7 @@ $this->registerJs(
         <?= CommentsCount::widget([
             'shortname' => '{yourforumshortname}',
             'identifier' => 'article_identifier' ]); ?>
+
 
         <!-- Editable::widget( [
         'model' => $model,
@@ -103,13 +105,14 @@ $this->registerJs(
      //$form->field($model, 'tax')->textarea(['rows' => 6]) -->
 
 
-    <?= SelectizeDropDownList::widget(
+
+        <!-- SelectizeDropDownList::widget(
                   [ 'name' => 'tags',
                     'value' => 'love, this, game',
                     'clientOptions' => [  // [...]
                     ],
                   ]);
-     ?>
+     ?> -->
 
      <?= FileUploadUI::widget([
         'model' => $model,
@@ -142,12 +145,13 @@ $this->registerJs(
     </div>
 
     <?php ActiveForm::end(); ?>
-    <?php yii\widgets\Pjax::end() ?>
-    <?php Pjax::begin(); ?>
+    <?php yii\widgets\Pjax::end(); ?>
+
+
+  <?php Pjax::begin(); ?>
       <?= Html::beginForm(['site/form-submission'], 'post', ['data-pjax' => '', 'class' => 'form-inline']); ?>
       <?= Html::input('text', 'string', Yii::$app->request->post('string'), ['class' => 'form-control']) ?>
       <?= Html::submitButton('Получить хеш', ['class' => 'btn btn-lg btn-primary', 'name' => 'hash-button']) ?>
       <?= Html::endForm() ?>
-
-    <?php Pjax::end(); ?>
+  <?php Pjax::end(); ?>
 </div>
